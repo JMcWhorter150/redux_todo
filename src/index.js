@@ -11,15 +11,45 @@
 // // Learn more about service workers: https://bit.ly/CRA-PWA
 // serviceWorker.unregister();
 
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 
 // creates global types for actions 
 
+const ADD_TODO = 'ADD_TODO';
+const REM_TODO = 'REM_TODO';
+const TODO_COMPLETED = 'TODO_COMPLETED';
+
 // creates initial states
+
+const todoState = [{
+    todo: "put away laundry",
+    completed: false,
+}]
 
 // creates reducers
 
-// combines reducers
+function manageTodos(state=todoState, action) {
+    const newState = [...state];
+
+    switch (action.type) {
+        case ADD_TODO:
+            newState.push(action.payload);
+            break;
+        case REM_TODO:
+            newState.splice(action.id, 1);
+            break;
+        case TODO_COMPLETED:
+            newState[action.id].completed = true;
+            break;
+        default:
+            console.log(`No match found`);
+            break;
+    }
+
+    return newState;
+}
+
+// combines reducers (not needed here)
 
 // initializes store
 
