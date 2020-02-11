@@ -79,7 +79,16 @@ function manageTodos(state=todoState, action) {
 
 // initializes store
 
+const store = createStore(manageTodos, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+window.store = store;
+window.completeTodo = completeTodo;
 // adds store debugging
+store.subscribe(() => {
+    console.table(store.getState());
+})
 
 // basic dispatches
-
+store.dispatch(addTodo('do my homework'));
+store.dispatch(addTodo('clean my truck'));
+store.dispatch(remTodo(0));
+// store.dispatch(completeTodo(1));
