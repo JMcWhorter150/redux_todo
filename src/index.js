@@ -26,6 +26,32 @@ const todoState = [{
     completed: false,
 }]
 
+// Action components
+
+function addTodo(text) {
+    return {
+        type: ADD_TODO,
+        payload: {
+            todo: text,
+            completed: false
+        }
+    }
+}
+
+function remTodo(whichOne) {
+    return {
+        type: REM_TODO,
+        id: whichOne
+    }
+}
+
+function completeTodo(whichOne) {
+    return {
+        type: TODO_COMPLETED,
+        id: whichOne
+    }
+}
+
 // creates reducers
 
 function manageTodos(state=todoState, action) {
